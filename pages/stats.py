@@ -20,12 +20,13 @@ st.download_button(
     mime='text/csv',
 )
 
-st.download_button(
-    label="Jupyter",
-    data="Data/Project_Galyavov.ipynb",
-    file_name='employee_anal.csv',
-    mime='text/ipynb',
-)
+with open("Data/Project_Galyavov.ipynb", "rb") as file:
+    st.sidebar.download_button(
+        label="Notebook",
+        data=file,
+        file_name="Project_Galyavov.ipynb",
+        mime="application/x-ipynb+json"
+    )
 
 st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 
