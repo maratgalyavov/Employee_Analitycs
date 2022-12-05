@@ -11,7 +11,14 @@ def convert_df(df):
 csv = convert_df(df)
 
 st.download_button(
-    label="Download data as CSV",
+    label="Employee dataset as CSV",
+    data=csv,
+    file_name='employee_anal.csv',
+    mime='text/csv',
+)
+
+st.download_button(
+    label="Jupyter",
     data=csv,
     file_name='employee_anal.csv',
     mime='text/csv',
