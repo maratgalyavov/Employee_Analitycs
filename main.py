@@ -41,6 +41,13 @@ with tab3:
     st.header("WorkLifeBalance")
 
 
+with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
+    btn = st.download_button(
+            label="Download sad reality",
+            data=file,
+            file_name="sad101.png",
+            mime="image/png"
+          )
 
 clicked = st.button("BALOONS")
 if clicked: st.balloons()
