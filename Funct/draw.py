@@ -8,9 +8,11 @@ def drawpie(i):
     i.plot.pie()
     st.pyplot(fig)
 
-def drawbar(x,y):
+def drawbar(x,y,xt, yt):
     fig, ax = plt.subplots()
     plt.bar(x,y)
+    ax.set_ylabel(yt)
+    ax.set_xlabel(xt)
     st.pyplot(fig)
 
 def drawline(x,y):

@@ -21,33 +21,26 @@ levels_sat = list(df["JobSatisfaction"].unique())
 tab1, tab2, tab3 = st.tabs(["Satisfaction", "Wage", "WorkLifeBalance"])
 
 with tab1:
-    st.header("Satisfaction")
-    df = df.sort_values(by=["JobSatisfaction","MonthlyIncome"])
-    option = st.selectbox("profession",(list(df["JobRole"].unique())))
-    tmp = df[df["JobRole"]==option]
-    draw.drawbar(tmp["JobSatisfaction"],tmp["MonthlyIncome"])
-    draw.drawbar(tmp["JobSatisfaction"],tmp["JobInvolvement"])
+    st.header("Employee satisfaction")
+    df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome"])
+    option = st.selectbox("profession", (list(df["JobRole"].unique())))
+    tmp = df[df["JobRole"] == option]
+    draw.drawbar(tmp["JobSatisfaction"], tmp["MonthlyIncome"], "JobSatisfaction", "MonthlyIncome")
+    draw.drawbar(tmp["JobSatisfaction"], tmp["JobInvolvement"],"JobSatisfaction","JobInvolvement")
 
-
-
+    st.header("Job satisfaction by monthly salary")
+    number = st.slider("Salary", 1000, 20000)
+    draw.drawpie((df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)])[
+                     "JobSatisfaction"].value_counts())
 
 with tab2:
     st.header("Wage")
-    df = df.sort_values(by=["MonthlyIncome", "JobSatisfaction"])
-    option = st.selectbox("profession",(list(df["JobRole"].unique())))
-    tmp = df[df["JobRole"] == option]
 
 
 with tab3:
-    st.title("Valodya spendings")
     st.header("WorkLifeBalance")
-    df = df.sort_values(by=["WorkLifeBalance"])
-    draw.drawbar(df["WorkLifeBalance"],df["DistanceFromHome"])
 
-st.header("Job satisfaction by monthly salary")
-number = st.slider("Salary", 1000, 20000)
-draw.drawpie((df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)])[
-    "JobSatisfaction"].value_counts())
+
 
 clicked = st.button("BALOONS")
 if clicked: st.balloons()
