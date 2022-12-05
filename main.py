@@ -7,22 +7,25 @@ from Funct import draw
 st.markdown("# Main project page️")
 
 
-def cleanup():
-    df.dropna()
-    df["Age"] = df["Age"].astype("int64")
-    df["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
-    df["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
+def cleanup(dft):
+    dft.dropna()
+    dft["Age"] = df["Age"].astype("int64")
+    dft["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
+    dft["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
 
 
 df = pd.read_csv("Data/HR Employee Attrition.csv")
-cleanup()
+df2 = pd.read_csv("Data/salary_data_cleaned.csv")
+cleanup(df)
+cleanup(df2)
 levels_sat = list(df["JobSatisfaction"].unique())
-
-tab1, tab2, tab3 = st.tabs(["Satisfaction", "Wage", "WorkLifeBalance"])
+df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome"])
+df2 = df2.sort_values(by=["age","avg_salary"])
+df2 = df2[(df2["age"] > 0)&(df2["age"] < 100)]
+tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", ""])
 
 with tab1:
     st.header("Employee satisfaction")
-    df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome"])
     option = st.selectbox("profession", (list(df["JobRole"].unique())))
     tmp = df[df["JobRole"] == option]
     draw.drawbar(tmp["JobSatisfaction"], tmp["MonthlyIncome"], "JobSatisfaction", "MonthlyIncome")
@@ -35,6 +38,7 @@ with tab1:
 
 with tab2:
     st.header("Wage")
+    draw.drawline(df2["age"],df2["avg_salary"],"age","avg_salary")
 
 
 with tab3:

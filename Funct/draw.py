@@ -12,13 +12,15 @@ def drawpie(i):
 
 def drawbar(x, y, xt, yt):
     fig, ax = plt.subplots()
-    plt.boxplot(y, )
+    plt.bar(x,y)
     ax.set_ylabel(yt)
     ax.set_xlabel(xt)
     st.pyplot(fig)
 
 
-def drawline(x, y):
+def drawline(x, y, xt, yt):
     fig, ax = plt.subplots()
-    plt.plot(x, y)
+    plt.stackplot(x, y)
+    ax.set_ylabel(yt)
+    ax.set_xlabel(xt)
     st.pyplot(fig)

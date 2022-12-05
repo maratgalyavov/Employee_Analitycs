@@ -3,8 +3,9 @@ import pandas as pd
 
 st.markdown("# Stats logs️")
 df = pd.read_csv("Data/HR Employee Attrition.csv")
+df2 = pd.read_csv("Data/salary_data_cleaned.csv")
 st.write(df.describe())
-
+st.write(df2.describe())
 
 @st.cache
 def convert_df(df):
