@@ -39,6 +39,7 @@ with tab2:
 
 
 with tab3:
+    st.title("Valodya spendings")
     st.header("WorkLifeBalance")
     df = df.sort_values(by=["WorkLifeBalance"])
     draw.drawbar(df["WorkLifeBalance"],df["DistanceFromHome"])
