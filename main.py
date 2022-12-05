@@ -41,8 +41,10 @@ with tab3:
     st.header("WorkLifeBalance")
 
 
+st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
+
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
-    btn = st.download_button(
+    btn = st.sidebar.download_button(
             label="Download sad reality",
             data=file,
             file_name="sad101.png",
