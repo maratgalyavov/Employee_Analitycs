@@ -21,7 +21,7 @@ st.download_button(
 )
 
 with open("Data/Project_Galyavov.ipynb", "rb") as file:
-    st.sidebar.download_button(
+    st.download_button(
         label="Notebook",
         data=file,
         file_name="Project_Galyavov.ipynb",
