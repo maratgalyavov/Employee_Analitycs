@@ -40,12 +40,12 @@ with tab2:
 
 with tab3:
     st.header("WorkLifeBalance")
-    df = df.sort_values(by=["WorkLifeBalance", "JobSatisfaction"])
-    draw.drawbar(df["WorkLifeBalance"],df["JobSatisfaction"])
+    df = df.sort_values(by=["WorkLifeBalance"])
+    draw.drawbar(df["WorkLifeBalance"],df["DistanceFromHome"])
 
 st.header("Job satisfaction by monthly salary")
 number = st.slider("Salary", 1000, 20000)
-draw.drawpie((df[(df["MonthlyIncome"] >= number - 100) & (df["MonthlyIncome"] <= number + 100)])[
+draw.drawpie((df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)])[
     "JobSatisfaction"].value_counts())
 
 clicked = st.button("BALOONS")
