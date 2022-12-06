@@ -12,12 +12,17 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-csv = convert_df(df)
-
 st.download_button(
     label="Employee dataset as CSV",
-    data=csv,
+    data=convert_df(df),
     file_name='employee_anal.csv',
+    mime='text/csv',
+)
+
+st.download_button(
+    label="Salary dataset as CSV",
+    data=convert_df(df2),
+    file_name='salary_data.csv',
     mime='text/csv',
 )
 
