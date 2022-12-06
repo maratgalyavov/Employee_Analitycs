@@ -18,9 +18,16 @@ def drawbar(x, y, xt, yt):
     st.pyplot(fig)
 
 
-def drawline(x, y, xt, yt):
+def drawstack(x, y, xt, yt):
     fig, ax = plt.subplots()
     plt.stackplot(x, y)
+    ax.set_ylabel(yt)
+    ax.set_xlabel(xt)
+    st.pyplot(fig)
+
+def drawline(x, y, xt, yt):
+    fig, ax = plt.subplots()
+    plt.plot(x, y)
     ax.set_ylabel(yt)
     ax.set_xlabel(xt)
     st.pyplot(fig)

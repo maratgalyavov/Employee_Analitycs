@@ -4,27 +4,45 @@ import pandas as pd
 st.markdown("# Stats logs️")
 df = pd.read_csv("Data/HR Employee Attrition.csv")
 df2 = pd.read_csv("Data/salary_data_cleaned.csv")
-st.write(df.describe())
-st.write(df2.describe())
+df3 = pd.read_csv("Data/unemployment analysis.csv")
+options = ['employee_anal.csv', 'salary_data.csv', 'unemployment_data.csv']
+option = st.selectbox("Dataset", ['employee_anal.csv', 'salary_data.csv', 'unemployment_data.csv'], )
+if options.index(option) == 0:
+    st.write(df.describe())
+elif options.index(option) == 1:
+    st.write(df2.describe())
+elif options.index(option) == 2:
+    st.write(df3.describe())
+
+col1, col2, col3 = st.columns(3)
+
 
 @st.cache
 def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-st.download_button(
-    label="Employee dataset as CSV",
-    data=convert_df(df),
-    file_name='employee_anal.csv',
-    mime='text/csv',
-)
-
-st.download_button(
-    label="Salary dataset as CSV",
-    data=convert_df(df2),
-    file_name='salary_data.csv',
-    mime='text/csv',
-)
+with col1:
+    st.download_button(
+        label="Employee dataset as CSV",
+        data=convert_df(df),
+        file_name='employee_anal.csv',
+        mime='text/csv',
+    )
+with col2:
+    st.download_button(
+        label="Salary dataset as CSV",
+        data=convert_df(df2),
+        file_name='salary_data.csv',
+        mime='text/csv',
+    )
+with col3:
+    st.download_button(
+        label="Unemployed dataset as CSV",
+        data=convert_df(df3),
+        file_name='unemployment_data.csv',
+        mime='text/csv',
+    )
 
 with open("Data/Project_Galyavov.ipynb", "rb") as file:
     st.download_button(

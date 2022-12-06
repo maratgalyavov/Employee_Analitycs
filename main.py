@@ -12,17 +12,19 @@ def cleanup(dft):
     dft["Age"] = df["Age"].astype("int64")
     dft["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
     dft["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
-
+    #переписать клинап под 3 датасета
 
 df = pd.read_csv("Data/HR Employee Attrition.csv")
 df2 = pd.read_csv("Data/salary_data_cleaned.csv")
+df3 = pd.read_csv("Data/unemployment analysis.csv")
 cleanup(df)
 cleanup(df2)
+cleanup((df3))
 levels_sat = list(df["JobSatisfaction"].unique())
-df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome"])
+df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome", "JobInvolvement"])
 df2 = df2.sort_values(by=["age","avg_salary"])
 df2 = df2[(df2["age"] > 0)&(df2["age"] < 100)]
-tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", ""])
+tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", "Unemployment"])
 
 with tab1:
     st.header("Employee satisfaction")
@@ -38,11 +40,17 @@ with tab1:
 
 with tab2:
     st.header("Wage")
-    draw.drawline(df2["age"],df2["avg_salary"],"age","avg_salary")
+    draw.drawstack(df2["age"],df2["avg_salary"],"age","avg_salary")
 
 
 with tab3:
-    st.header("WorkLifeBalance")
+    st.header("Uneployment")
+    years = list(range(1991, 2022))
+    medians = []
+    for i in years:
+        medians.append(df3[str(i)].mean())
+    draw.drawline(years, medians, "years","average % of unemployment")
+
 
 st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 
