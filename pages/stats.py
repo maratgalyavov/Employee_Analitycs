@@ -47,7 +47,7 @@ st.write("[Jupyter notebook](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")
 
 with open("Data/Project_Galyavov.ipynb", "rb") as file:
     st.download_button(
-        label="Notebook",
+        label="Rickroll",
         data=file,
         file_name="Project_Galyavov.ipynb",
         mime="application/x-ipynb+json"
