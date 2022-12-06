@@ -45,8 +45,6 @@ with col3:
     )
 st.write("[Jupyter notebook](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")
 
-st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
-
 with open("Data/Project_Galyavov.ipynb", "rb") as file:
     st.sidebar.download_button(
         label="Notebook",
@@ -62,3 +60,4 @@ with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
         file_name="sad101.png",
         mime="image/png"
     )
+st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
