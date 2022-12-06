@@ -40,7 +40,7 @@ with tab1:
 
 with tab2:
     st.header("Wage")
-    draw.drawstack(df2["age"],df2["avg_salary"],"age","avg_salary")
+    draw.drawstak(df2["age"],df2["avg_salary"],"age","avg_salary")
 
 
 with tab3:
