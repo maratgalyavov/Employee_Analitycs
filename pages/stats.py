@@ -52,6 +52,7 @@ with open("Data/Project_Galyavov.ipynb", "rb") as file:
         file_name="Project_Galyavov.ipynb",
         mime="application/x-ipynb+json"
     )
+st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     btn = st.sidebar.download_button(
