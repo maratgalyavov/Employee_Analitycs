@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+import plotly.express as px
 
 
 def drawpie(i):
@@ -9,6 +10,9 @@ def drawpie(i):
     i.plot.pie()
     st.pyplot(fig)
 
+def drawbox(df):
+    fig = px.box(df, x = "JobSatisfaction", y= "MonthlyIncome")
+    st.plotly_chart(fig)
 
 def drawbar(x, y, xt, yt):
     fig, ax = plt.subplots()

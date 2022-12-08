@@ -6,25 +6,30 @@ from Funct import draw
 
 st.markdown("# Main project page️")
 
-
-def cleanup(dft):
-    dft.dropna()
-    dft["Age"] = df["Age"].astype("int64")
-    dft["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
-    dft["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
-    # переписать клинап под 3 датасета
-
-
 df = pd.read_csv("Data/HR Employee Attrition.csv")
 df2 = pd.read_csv("Data/salary_data_cleaned.csv")
 df3 = pd.read_csv("Data/unemployment analysis.csv")
-cleanup(df)
-cleanup(df2)
-cleanup((df3))
+
+
+def cleanup(df01, df02, df03):
+    df01.dropna()
+    df02.dropna()
+    df03.dropna()
+    df["Age"] = df["Age"].astype("int64")
+    df["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
+    df["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
+    df02 = df02[(df02["age"] > 0) & (df02["age"] < 100)]
+    return df01, df02, df03
+
+def modify(df0):
+    return df0.assign(increase=lambda x: x.MonthlyIncome * x.PercentSalaryHike * 0.01)
+
+df, df2, df3 = cleanup(df, df2, df3)
 levels_sat = sorted(list(df["JobSatisfaction"].unique()))
 df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome", "JobInvolvement"])
 df2 = df2.sort_values(by=["age", "avg_salary"])
-df2 = df2[(df2["age"] > 0) & (df2["age"] < 100)]
+
+
 tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", "Unemployment"])
 
 with tab1:
@@ -36,7 +41,7 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    # draw.drawbar(tmp["JobSatisfaction"], tmp["MonthlyIncome"], "JobSatisfaction", "MonthlyIncome")
+    draw.drawbox(tmp)
     avg_inc = []
     avg_inv = []
     for i in levels_sat:
