@@ -14,6 +14,7 @@ def drawhist(df, values):
     fig = px.histogram(df, x=values)
     st.plotly_chart(fig)
 
+
 def drawbox(df, x, y):
     fig = px.box(df, x=x, y=y)
     st.plotly_chart(fig)
