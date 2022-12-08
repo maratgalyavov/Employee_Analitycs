@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 
 st.markdown("# Stats logs️")
-st.write("Here you can view descriptive statistics for all my datasets as well as download them in .csv format. Also listed below is my jupyter notebook for this project")
+st.write(
+    "Here you can view descriptive statistics for all my datasets as well as download them in .csv format. Also listed below is my jupyter notebook for this project")
 df = pd.read_csv("Data/HR Employee Attrition.csv")
 df2 = pd.read_csv("Data/salary_data_cleaned.csv")
 df3 = pd.read_csv("Data/unemployment analysis.csv")

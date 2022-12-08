@@ -14,12 +14,12 @@ def drawhist(df, values):
 
 
 def drawbox(df, x, y, xl, yl):
-    fig = px.box(df, x=x, y=y, labels={x:xl, y:yl})
+    fig = px.box(df, x=x, y=y, labels={x: xl, y: yl})
     st.plotly_chart(fig)
 
 
 def drawbar(df, x, y, xl, yl):
-    fig = px.bar(df, x=x, y=y, labels={x:xl, y:yl})
+    fig = px.bar(df, x=x, y=y, labels={x: xl, y: yl})
     st.plotly_chart(fig)
 
 
@@ -32,5 +32,5 @@ def drawbar(df, x, y, xl, yl):
 
 
 def drawline(df, x, y, xl, yl):
-    fig = px.line(df, x=x, y=y, labels={x:xl, y:yl})
+    fig = px.line(df, x=x, y=y, labels={x: xl, y: yl})
     st.plotly_chart(fig)
