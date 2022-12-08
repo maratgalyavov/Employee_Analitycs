@@ -15,20 +15,22 @@ def cleanup(df01, df02, df03):
     df01.dropna()
     df02.dropna()
     df03.dropna()
-    df["Age"] = df["Age"].astype("int64")
-    df["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
-    df["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
+    df01["Age"] = df["Age"].astype("int64")
+    df01["DistanceFromHome"] = df["DistanceFromHome"].astype("int64")
+    df01["MonthlyIncome"] = df["MonthlyIncome"].astype("int64")
     df02 = df02[(df02["age"] > 0) & (df02["age"] < 100)]
+    df03.drop(columns=["Country Name", "Country Code"])
     return df01, df02, df03
+
 
 def modify(df0):
     return df0.assign(increase=lambda x: x.MonthlyIncome * x.PercentSalaryHike * 0.01)
+
 
 df, df2, df3 = cleanup(df, df2, df3)
 levels_sat = sorted(list(df["JobSatisfaction"].unique()))
 df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome", "JobInvolvement"])
 df2 = df2.sort_values(by=["age", "avg_salary"])
-
 
 tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", "Unemployment"])
 
@@ -41,28 +43,26 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    draw.drawbar(tmp, "JobSatisfaction","MonthlyIncome")
-    draw.drawbar(tmp,"JobSatisfaction", "JobInvolvement")
+    draw.drawbar(tmp, "JobSatisfaction", "MonthlyIncome")
+    draw.drawbar(tmp, "JobSatisfaction", "JobInvolvement")
     st.header("Job satisfaction by monthly salary")
     number = st.slider("Salary", 1000, 20000)
     df = df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)]
-    draw.drawpie(df,"JobSatisfaction")
+    draw.drawpie(df, "JobSatisfaction")
 
 with tab2:
     st.header("Wage")
-    ages = list(df2["age"].unique())
-    avg_wag = []
-    for i in ages:
-        avg_wag.append((df2[df2["age"] == i])["min_salary"].mean())
-    draw.drawstak(ages, avg_wag, "age", "min_salary")
+    draw.drawbox(df2, "age", "min_salary")
 
 with tab3:
     st.header("Uneployment")
-    years = list(range(1991, 2022))
+    years = list(map(str,(range(1991, 2022))))
     medians = []
     for i in years:
         medians.append(df3[str(i)].mean())
-    draw.drawline(years, medians, "years", "average % of unemployment")
+    data = {"year":years, "mids":medians}
+    df69 = pd.DataFrame.from_dict(data)
+    draw.drawline(df69, "year", "mids")
 
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     btn = st.sidebar.download_button(
@@ -75,3 +75,4 @@ st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 
 clicked = st.button("BALOONS")
 if clicked: st.balloons()
+print(df3.info())
