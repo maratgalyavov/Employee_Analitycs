@@ -41,19 +41,17 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    draw.drawbox(tmp)
     avg_inc = []
     avg_inv = []
     for i in levels_sat:
         avg_inc.append((tmp[tmp["JobSatisfaction"] == i])["MonthlyIncome"].mean())
         avg_inv.append((tmp[tmp["JobSatisfaction"] == i])["JobInvolvement"].mean())
-    draw.drawbar(levels_sat, avg_inc, "JobSatisfaction", "MonthlyIncome")
-    draw.drawbar(levels_sat, avg_inv, "JobSatisfaction", "JobInvolvement")
-
+    draw.drawbar(df, "JobSatisfaction","MonthlyIncome")
+    draw.drawbar(df,"JobSatisfaction", "JobInvolvement")
     st.header("Job satisfaction by monthly salary")
     number = st.slider("Salary", 1000, 20000)
-    draw.drawpie((df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)])[
-                     "JobSatisfaction"].value_counts())
+    df = df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)]
+    draw.drawpie(df,"JobSatisfaction")
 
 with tab2:
     st.header("Wage")
