@@ -26,8 +26,8 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    draw.drawbar(tmp, "JobSatisfaction", "MonthlyIncome")
-    draw.drawbar(tmp, "JobSatisfaction", "JobInvolvement")
+    draw.drawbar(tmp, "JobSatisfaction", "MonthlyIncome", "Job Satisfaction", "Monthly Income")
+    draw.drawbar(tmp, "JobSatisfaction", "JobInvolvement", "Job Satisfaction", "Job Involvement")
     st.header("Job satisfaction by monthly salary")
     st.write(
         "On the pie chart below, i represented different percentages of job satisfaction based on salary, the chart is interactive so you can select desired level of income and view percentages of different satisfaction levels among individuals whose income is within +-500$ of the selected amount")
@@ -37,8 +37,10 @@ with tab1:
 
 with tab2:
     st.header("Wage")
-    st.write("Bow chart below shows minimum wage requirments for individuals based on their age. Box chart was chosen here to make average values more clear as well as show extremums")
-    draw.drawbox(df2, "age", "min_salary")
+    st.write("Bow chart below shows minimum and average wage requirements for individuals based on their age. Box chart was chosen here to make average values more clear as well as show extremes. I want to prove that most people get paid above their minimum threshold and this gap is not dependant on one's age")
+    draw.drawbox(df2, "age", "min_salary", "Age", "Minimal Salary")
+    draw.drawbox(df2, "age", "avg_salary", "Age", "Average Salary")
+    st.write("We can observe that two charts are almost identical apart from wages being noticeably higher in the second one. This example shows that most workers get paid on average 40-70 thousand $ more than their minimal requirements")
 
 with tab3:
     st.header("Unemployment")
@@ -48,7 +50,7 @@ with tab3:
         medians.append(df3[str(i)].mean())
     data = {"year": years, "mids": medians}
     df69 = pd.DataFrame.from_dict(data)
-    draw.drawline(df69, "year", "mids")
+    draw.drawline(df69, "year", "mids", "Year", "Percentage Of Unemployment")
 
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     btn = st.sidebar.download_button(
@@ -59,6 +61,6 @@ with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     )
 st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 
-clicked = st.button("BALOONS")
+clicked = st.button("BALLOONS")
 if clicked:
     st.balloons()
