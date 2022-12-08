@@ -41,13 +41,8 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    avg_inc = []
-    avg_inv = []
-    for i in levels_sat:
-        avg_inc.append((tmp[tmp["JobSatisfaction"] == i])["MonthlyIncome"].mean())
-        avg_inv.append((tmp[tmp["JobSatisfaction"] == i])["JobInvolvement"].mean())
-    draw.drawbar(df, "JobSatisfaction","MonthlyIncome")
-    draw.drawbar(df,"JobSatisfaction", "JobInvolvement")
+    draw.drawbar(tmp, "JobSatisfaction","MonthlyIncome")
+    draw.drawbar(tmp,"JobSatisfaction", "JobInvolvement")
     st.header("Job satisfaction by monthly salary")
     number = st.slider("Salary", 1000, 20000)
     df = df[(df["MonthlyIncome"] >= number - 500) & (df["MonthlyIncome"] <= number + 500)]

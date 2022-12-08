@@ -6,7 +6,7 @@ import plotly.express as px
 
 
 def drawpie(df, values):
-    fig = px.pie(df, values=values)
+    fig = px.pie(df, values=values, names=values)
     st.plotly_chart(fig)
 
 def drawbox(df, x, y):
