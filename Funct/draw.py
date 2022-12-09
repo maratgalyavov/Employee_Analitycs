@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import plotly.express as px
+from plotly.subplots import make_subplots
 import streamlit as st
 
 
@@ -32,5 +33,5 @@ def drawbar(df, x, y, xl, yl):
 
 
 def drawline(df, x, y, xl, yl):
-    fig = px.line(df, x=x, y=y, labels={x: xl, y: yl})
+    fig = px.line(df, x=x, y=y, labels={x: xl, y[0]: yl})
     st.plotly_chart(fig)

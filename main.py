@@ -2,9 +2,9 @@ import runpy
 
 import pandas as pd
 import streamlit as st
+
 from Funct import draw
 from Funct import tools
-
 
 st.markdown("# Main project page️")
 
@@ -49,14 +49,20 @@ with tab2:
 
 with tab3:
     st.header("Unemployment")
-    st.write("")
+    st.write(
+        "Level of unemployment generally reflects what is happening with the world economy. line chart below depicts unemployment percentage in europe, us and average among all countries. all three trends follow the same pattern, proving the point that level of uneployment is a great metric for analyzing worldwide economical situation ")
     years = list(map(str, (range(1991, 2022))))
     medians = []
+    europe = []
+    us = []
     for i in years:
         medians.append(df3[str(i)].mean())
-    data = {"year": years, "mids": medians}
+        europe.append((df3[df3["Country Code"] == "ECS"])[str(i)].mean())
+        us.append((df3[df3["Country Code"] == "GBR"])[str(i)].mean())
+    data = {"year": years, "mids": medians, "europe": europe, "us": us}
     df69 = pd.DataFrame.from_dict(data)
-    draw.drawline(df69, "year", "mids", "Year", "Percentage Of Unemployment")
+    ys = ["mids", "europe", "us"]
+    draw.drawline(df69, "year", ys, "Year", "Percentage Of Unemployment")
 
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     btn = st.sidebar.download_button(
@@ -70,3 +76,5 @@ st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 clicked = st.button("BALLOONS")
 if clicked:
     st.balloons()
+
+runpy.run_path(path_name="Funct/bothandler.py")
