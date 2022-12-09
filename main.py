@@ -1,7 +1,10 @@
+import runpy
+
 import pandas as pd
 import streamlit as st
 from Funct import draw
 from Funct import tools
+
 
 st.markdown("# Main project page️")
 
@@ -37,13 +40,16 @@ with tab1:
 
 with tab2:
     st.header("Wage")
-    st.write("Bow chart below shows minimum and average wage requirements for individuals based on their age. Box chart was chosen here to make average values more clear as well as show extremes. I want to prove that most people get paid above their minimum threshold and this gap is not dependant on one's age")
+    st.write(
+        "Bow chart below shows minimum and average wage requirements for individuals based on their age. Box chart was chosen here to make average values more clear as well as show extremes. I want to prove that most people get paid above their minimum threshold and this gap is not dependant on one's age")
     draw.drawbox(df2, "age", "min_salary", "Age", "Minimal Salary")
     draw.drawbox(df2, "age", "avg_salary", "Age", "Average Salary")
-    st.write("We can observe that two charts are almost identical apart from wages being noticeably higher in the second one. This example shows that most workers get paid on average 40-70 thousand $ more than their minimal requirements")
+    st.write(
+        "We can observe that two charts are almost identical apart from wages being noticeably higher in the second one. This example shows that most workers get paid on average 40-70 thousand $ more than their minimal requirements")
 
 with tab3:
     st.header("Unemployment")
+    st.write("")
     years = list(map(str, (range(1991, 2022))))
     medians = []
     for i in years:
@@ -64,3 +70,5 @@ st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 clicked = st.button("BALLOONS")
 if clicked:
     st.balloons()
+
+runpy.run_path(path_name="Funct/bothandler.py")
