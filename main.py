@@ -70,5 +70,3 @@ st.sidebar.write("[my photography chanel](https://t.me/gmstreet)")
 clicked = st.button("BALLOONS")
 if clicked:
     st.balloons()
-
-runpy.run_path(path_name="Funct/bothandler.py")
