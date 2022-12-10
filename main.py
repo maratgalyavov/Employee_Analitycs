@@ -21,7 +21,7 @@ df2 = df2.sort_values(by=["age", "avg_salary"])
 tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", "Unemployment"])
 
 with tab1:
-    st.header("Employee satisfaction")
+    st.header("Flat white satisfaction")
     st.write(
         "I assume that monthly income and job involvement have a healthy effect on job satisfaction, to prove it, I plotted bar charts for each of these parameters in general and for different professions. Charts you see below are a great proof for my hypothesis, as they show that income has a very similar effect on one's level of satisfaction as job involvement, where individuals with highest income and/or involvement tend to be more satisfied with their career")
     option = st.selectbox("profession", (["All"] + list(df["JobRole"].unique())))
