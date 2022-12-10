@@ -26,7 +26,7 @@ def drawbar(df, x, y, xl, yl):
 
 def drawscatter(df, x, y, xl, yl):
     fig = px.scatter(df, x=x, y=y, trendline="ols", color="Rating", labels={x: xl, y[0]: yl})
-    fig.show()
+    st.plotly_chart(fig)
 
 
 def drawline(df, x, y, xl, yl):
