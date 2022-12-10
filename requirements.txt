@@ -3,3 +3,4 @@ plotly==5.11.0
 pandas~=1.5.2
 pyTelegramBotAPI==4.8.0
 streamlit~=1.15.2
+statsmodels==0.13.5

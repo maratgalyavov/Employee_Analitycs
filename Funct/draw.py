@@ -24,12 +24,9 @@ def drawbar(df, x, y, xl, yl):
     st.plotly_chart(fig)
 
 
-# def drawstak(x, y, xt, yt):
-#     fig, ax = plt.subplots()
-#     plt.stackplot(x, y)
-#     ax.set_ylabel(yt)
-#     ax.set_xlabel(xt)
-#     st.pyplot(fig)
+def drawscatter(df, x, y, xl, yl):
+    fig = px.scatter(df, x=x, y=y, trendline="ols", color="Rating", labels={x: xl, y[0]: yl})
+    fig.show()
 
 
 def drawline(df, x, y, xl, yl):
