@@ -21,7 +21,7 @@ def drawbox(df, x, y, xl, yl):
 
 
 def drawbar(df, x, y, xl, yl):
-    fig = px.bar(df, x=x, y=y, labels={x: xl, y: yl})
+    fig = px.bar(df, x=x, y=y, labels={x[0]: xl, y[0]: yl},barmode="group")
     st.plotly_chart(fig)
 
 
@@ -36,6 +36,6 @@ def drawline(df, x, y, xl, yl):
 
 
 def drawheat(df, x, y, xl, yl):
-    fig = px.density_heatmap(df, x=x, y=y, labels={x: xl, y: yl}, color_continuous_scale="sunsetdark", nbinsx=30,
-                             nbinsy=30)
+    fig = px.density_heatmap(df, x=x, y=y, labels={x: xl, y: yl}, color_continuous_scale="sunsetdark", nbinsx=10,
+                             nbinsy=10)
     st.plotly_chart(fig)

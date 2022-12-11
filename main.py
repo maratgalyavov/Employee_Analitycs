@@ -19,7 +19,7 @@ tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", "Unemployment"])
 with tab1:
     st.header("Employee satisfaction")
     st.write(
-        "I assume that monthly income and job involvement have a healthy effect on job satisfaction, to prove it, I plotted bar charts for each of these parameters in general and for different professions. Charts you see below are a great proof for my hypothesis, as they show that income has a very similar effect on one's level of satisfaction as job involvement, where individuals with highest income and/or involvement tend to be more satisfied with their career")
+        "I assume that monthly income and job involvement have a healthy effect on job satisfaction, to prove it, I plotted bar charts for each of these parameters in general and for different professions. Charts you see below are a great disproof for my hypothesis, as they show that income has a very subtle effect on one's level of satisfaction, same for job involvement, where individuals with highest income and/or involvement tend to be more satisfied with their career, but only slightly")
     st.write(
         "Bar chaart was chosen to represent this because it is easy to undersrtand and very easy to compare parameters")
     option = st.selectbox("profession", (["All"] + list(df["JobRole"].unique())))
@@ -66,7 +66,7 @@ with tab3:
     df69 = pd.DataFrame.from_dict(data)
     ys = ["mids", "europe", "us"]
     draw.drawline(df69, "year", ys, "Year", "Percentage Of Unemployment")
-    #draw.drawheat(df69, "year", "mids","year","average uneployment")
+    draw.drawbar(df69, "year", ys, "Year", "Percentage Of Unemployment")
 
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     btn = st.sidebar.download_button(
