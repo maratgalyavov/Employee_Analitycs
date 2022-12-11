@@ -27,7 +27,7 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    draw.drawhist(tmp, "MonthlyIncome","JobSatisfaction", "Monthly Income","Job Satisfaction")
+    draw.drawhist(tmp, "MonthlyIncome", "JobSatisfaction", "Monthly Income", "Job Satisfaction")
     draw.drawhist(tmp, "JobInvolvement", "JobSatisfaction", "Job Involvement", "Job Satisfaction")
     st.header("Job satisfaction by monthly salary")
     st.write(
@@ -40,13 +40,14 @@ with tab1:
 with tab2:
     st.header("Wage")
     st.write(
-        "Box chart below shows minimum and average wage requirements for individuals based on their age. Box chart was chosen here to make average values more clear as well as show extremes. I want to prove that most people get paid above their minimum threshold and this gap is not dependant on one's age")
+        "Plot below shows minimum and average wage requirements for individuals based on their age. I want to prove that most people get paid above their minimum threshold and this gap is not dependant on one's age")
     st.write(
-        "box charts are great to present gradial statistical data and it's deviations, while simultaniously looking cool")
+        "scatter plots are great to present gradial statistical data and it's deviations, while simultaniously looking cool")
     draw.drawscatter(df2, "age", "min_salary", "Age", "Minimal Salary")
     draw.drawscatter(df2, "age", "avg_salary", "Age", "Average Salary")
     st.write(
         "We can observe that two charts are almost identical apart from wages being noticeably higher in the second one. This example shows that most workers get paid on average 40-70 thousand $ more than their minimal requirements")
+    st.write("Heatmap bellow shows the dencity of asking salary among different ages")
     draw.drawheat(df2, "age", "avg_salary", "Age", "Average Salary")
 
 with tab3:
