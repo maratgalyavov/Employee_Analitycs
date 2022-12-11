@@ -10,7 +10,7 @@ def drawpie(df, values):
 
 
 def drawhist(df, x, y, xl, yl):
-    fig = px.histogram(df, x=x, y=y, labels={x: xl, y: yl},histfunc="avg")
+    fig = px.histogram(df, x=x, y=y, labels={x: xl, y: yl}, histfunc="avg")
     fig.update_layout(bargap=0.1)
     st.plotly_chart(fig)
 
@@ -32,4 +32,10 @@ def drawscatter(df, x, y, xl, yl):
 
 def drawline(df, x, y, xl, yl):
     fig = px.line(df, x=x, y=y, labels={x: xl, y[0]: yl})
+    st.plotly_chart(fig)
+
+
+def drawheat(df, x, y, xl, yl):
+    fig = px.density_heatmap(df, x=x, y=y, labels={x: xl, y: yl}, color_continuous_scale="sunsetdark", nbinsx=30,
+                             nbinsy=30)
     st.plotly_chart(fig)

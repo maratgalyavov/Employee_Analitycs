@@ -47,6 +47,7 @@ with tab2:
     draw.drawscatter(df2, "age", "avg_salary", "Age", "Average Salary")
     st.write(
         "We can observe that two charts are almost identical apart from wages being noticeably higher in the second one. This example shows that most workers get paid on average 40-70 thousand $ more than their minimal requirements")
+    draw.drawheat(df2, "age", "avg_salary", "Age", "Average Salary")
 
 with tab3:
     st.header("Unemployment")
@@ -65,6 +66,7 @@ with tab3:
     df69 = pd.DataFrame.from_dict(data)
     ys = ["mids", "europe", "us"]
     draw.drawline(df69, "year", ys, "Year", "Percentage Of Unemployment")
+    #draw.drawheat(df69, "year", "mids","year","average uneployment")
 
 with open("Data/2022-12-05 23.25.08.jpg", "rb") as file:
     btn = st.sidebar.download_button(
