@@ -14,7 +14,6 @@ df, df2, df3 = tools.cleanup(df, df2, df3)
 df = tools.modify(df)
 df = df.sort_values(by=["JobSatisfaction", "MonthlyIncome", "JobInvolvement"])
 df2 = df2.sort_values(by=["age", "avg_salary"])
-
 tab1, tab2, tab3 = st.tabs(["Satisfaction", "Salary", "Unemployment"])
 
 with tab1:
@@ -28,8 +27,8 @@ with tab1:
         tmp = df
     else:
         tmp = df[df["JobRole"] == option]
-    draw.drawbar(tmp, "JobSatisfaction", "MonthlyIncome", "Job Satisfaction", "Monthly Income")
-    draw.drawbar(tmp, "JobSatisfaction", "JobInvolvement", "Job Satisfaction", "Job Involvement")
+    draw.drawhist(tmp, "MonthlyIncome","JobSatisfaction", "Monthly Income","Job Satisfaction")
+    draw.drawhist(tmp, "JobInvolvement", "JobSatisfaction", "Job Involvement", "Job Satisfaction")
     st.header("Job satisfaction by monthly salary")
     st.write(
         "On the pie chart below, i represented different percentages of job satisfaction based on salary, the chart is interactive so you can select desired level of income and view percentages of different satisfaction levels among individuals whose income is within +-500$ of the selected amount")

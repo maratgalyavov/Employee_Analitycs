@@ -9,8 +9,9 @@ def drawpie(df, values):
     st.plotly_chart(fig)
 
 
-def drawhist(df, values):
-    fig = px.histogram(df, x=values)
+def drawhist(df, x, y, xl, yl):
+    fig = px.histogram(df, x=x, y=y, labels={x: xl, y: yl},histfunc="avg")
+    fig.update_layout(bargap=0.1)
     st.plotly_chart(fig)
 
 
