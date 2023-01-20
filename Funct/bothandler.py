@@ -62,7 +62,7 @@ def callback_query(call):
                          " I want to prove that most people get paid above their minimum threshold and this gap is not dependant on one's age")
         bot.send_photo(chat_id, photo=open("/Users/marat/PycharmProjects/Employee_Anal/Data/newplot-3.png", "rb"))
         bot.send_message(chat_id, "What would you like to see", reply_markup=gen_markup())
-    elif call.data == "pie":
+    elif call.data == "pe":
         bot.send_message(chat_id,
                          "On the pie chart below, i represented different percentages of job satisfaction based on salary")
         bot.send_photo(chat_id, photo=open("/Users/marat/PycharmProjects/Employee_Anal/Data/newplot-4.png", "rb"))
@@ -71,6 +71,6 @@ def callback_query(call):
 
 @bot.message_handler(commands=["help","start"])
 def message_handler(message):
-    bot.send_message(message.chat.id, "Pick your poison", reply_markup=gen_markup())
+    bot.send_message(message.chat.id, "What chart would you like to see?", reply_markup=gen_markup())
 
 bot.infinity_polling()
